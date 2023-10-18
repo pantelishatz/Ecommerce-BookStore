@@ -1,4 +1,3 @@
-# BlazorEcommerce
 # E-commerce Bookstore
 
 Welcome to the E-commerce Bookstore project on GitHub! This project is designed to create a user-friendly online bookstore for your reading pleasure.
