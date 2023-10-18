@@ -8,7 +8,7 @@ Welcome to the E-commerce Bookstore project on GitHub! This project is designed 
 
 - **Order Management**: Easily place, track, and manage orders for your favorite books.
 
-- **Product Listings**: Browse a wide selection of books, read reviews, and discover new titles.
+- **Product Listings**: Browse a wide selection of books,movies,games,read reviews, and discover new titles.
 
 - **Payment Options**: Choose from various payment methods for a seamless checkout process.
 
