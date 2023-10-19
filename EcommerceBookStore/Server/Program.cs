@@ -2,6 +2,7 @@ global using EcommerceBookStore.Shared;
 global using Microsoft.EntityFrameworkCore;
 global using EcommerceBookStore.Server.Data;
 global using EcommerceBookStore.Server.Services.ProductService;
+global using EcommerceBookStore.Server.Services.CategoryService;
 using Microsoft.AspNetCore.ResponseCompression;
 
 
@@ -25,6 +26,7 @@ namespace EcommerceBookStore
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 

@@ -1,4 +1,5 @@
 ﻿using EcommerceBookStore.Server.Data;
+using EcommerceBookStore.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +11,15 @@ namespace EcommerceBookStore.Server.Controllers
     {
         private readonly IProductService _productService;
         public ProductController(IProductService productService)
-        { 
+        {
             _productService = productService;
-        }  
+        }
 
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
             var result = await _productService.GetProductsAsync();
-         
+
             return Ok(result);
         }
 
@@ -30,6 +31,12 @@ namespace EcommerceBookStore.Server.Controllers
             return Ok(result);
         }
 
+        [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProductsByCategory(string categoryUrl)
+        {
+            var result = await _productService.GetProductsByCategory(categoryUrl);
 
+            return Ok(result);
+        }
     }
 }
