@@ -5,6 +5,8 @@ Welcome to the E-commerce Bookstore project on GitHub! This project is designed 
 ## Features
 
 - **Customer Profiles**: Users can create and manage their customer profiles.
+- ![Στιγμιότυπο οθόνης 2023-05-10 143146](https://github.com/pantelishatz/Ecommerce-BookStore/assets/120122695/d7ba734a-4c38-4e6c-ba50-7c3467d412b0)
+
 
 - **Order Management**: Easily place, track, and manage orders for your favorite books.
 
