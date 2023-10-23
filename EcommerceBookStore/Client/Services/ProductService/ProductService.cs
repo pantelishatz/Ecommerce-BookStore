@@ -29,7 +29,7 @@ namespace EcommerceBookStore.Client.Services.ProductService
         {
             // Check if a category URL is provided; if not, retrieve all products
             var result = categoryUrl == null ?
-                await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product") :
+                await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>("api/product/featured") :
                 await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/category/{categoryUrl}");
             // If the result is not null and contains data, update the Products list
             if (result != null && result.Data != null)
