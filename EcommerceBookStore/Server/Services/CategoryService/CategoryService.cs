@@ -10,7 +10,10 @@
         }
         public async Task<ServiceResponse<List<Category>>> GetCategories()
         {
-            var categories = await _context.Categories.ToListAsync();  
+            // Retrieve a list of categories from the database asynchronously
+            var categories = await _context.Categories.ToListAsync();
+
+            // Create a service response containing the retrieved categories
             return new ServiceResponse<List<Category>> 
             {
                 Data = categories

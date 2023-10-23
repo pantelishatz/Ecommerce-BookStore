@@ -33,6 +33,7 @@
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
+    // Toggle the navigation menu collapse state
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
@@ -40,6 +41,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        // Load categories asynchronously when the component is initialized
         await CategoryService.GetCategories();
     }
 }

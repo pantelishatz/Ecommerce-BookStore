@@ -34,10 +34,12 @@ else
 @code {
     protected override void OnInitialized()
     {
+        // Register for the ProductsChanged event to trigger a UI update
         ProductService.ProductsChanged += StateHasChanged;
     }
     public void Dispose()
     {
+        // Unregister from the ProductsChanged event when the component is disposed
         ProductService.ProductsChanged -= StateHasChanged;
     }
 

@@ -52,9 +52,13 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
+        // Set a loading message while fetching product data
         message = "Loading product...";
 
+        // Retrieve product data based on the provided 'id' parameter
         var result = await ProductService.GetProduct(id);
+
+        // Handle the result of the product retrieval
         if (!result.Success)
         {
             message = result.Message;
@@ -62,12 +66,15 @@ else
         else
         {
             product = result.Data;
+
+            // Set the current product type based on the first variant
             if (product.Variants.Count > 0)
             {
                 currentTypeId = product.Variants[0].ProductTypeId;
             }
         }
     }
+          // Retrieve the selected product variant based on the current type ID
         private ProductVariant GetSelectedVariant()
         {
             var variant = product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
