@@ -60,15 +60,16 @@ namespace EcommerceBookStore.Server.Controllers
         }
 
         /// <summary>
-        /// Searches for products based on a given search text.
+        /// Searches for products based on a given search text and optional page number.
         /// </summary>
         /// <param name="searchText">The text to search for in product titles and descriptions.</param>
+        /// <param name="page">The page number for paginated results (default is 1).</param>
         /// <returns>An ActionResult containing a ServiceResponse with the matching products if found.</returns>
 
-        [HttpGet("search/{searchText}")]
-        public async Task<ActionResult<ServiceResponse<List<Product>>>> SearchProducts(string searchText)
+        [HttpGet("search/{searchText}/{page}")]
+        public async Task<ActionResult<ServiceResponse<ProductSearchResult>>> SearchProducts(string searchText, int page = 1)
         {
-            var result = await _productService.SearchProducts(searchText);
+            var result = await _productService.SearchProducts(searchText, page);
 
             return Ok(result);
         }

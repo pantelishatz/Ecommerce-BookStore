@@ -14,6 +14,12 @@ namespace EcommerceBookStore.Client.Services.ProductService
         public List<Product> Products { get; set; } = new List<Product>();
         // A message to display while loading products
         public string Message { get; set; } = "Loading products...";
+        // The current page of products
+        public int CurrentPage { get; set; } = 1;
+        // The total number of pages
+        public int PageCount { get; set; } = 0;
+        // The last search text used
+        public string LastSearchText { get; set; } = string.Empty;
 
         // Event to notify when products have changed
         public event Action ProductsChanged;
@@ -34,6 +40,13 @@ namespace EcommerceBookStore.Client.Services.ProductService
             // If the result is not null and contains data, update the Products list
             if (result != null && result.Data != null)
                 Products = result.Data;
+
+            CurrentPage = 1;
+            PageCount = 0;
+
+            // If no products were found, set an appropriate message
+            if (Products.Count == 0)
+                Message = "No products found";
             // Invoke the ProductsChanged event to notify of changes
             ProductsChanged.Invoke();
         }
@@ -45,13 +58,20 @@ namespace EcommerceBookStore.Client.Services.ProductService
             return result.Data;
         }
 
-        public async Task SearchProducts(string searchText)
+        public async Task SearchProducts(string searchText, int page)
         {
             // Retrieve products that match the provided search text
-            var result = await _http.GetFromJsonAsync<ServiceResponse<List<Product>>>($"api/product/search/{searchText}");
-            if(result != null && result.Data != null)
-                Products = result.Data;
+            var result = await _http.GetFromJsonAsync<ServiceResponse<ProductSearchResult>>($"api/product/search/{searchText}/{page}");
+            // If the result is not null and contains data, update the Products list, CurrentPage, and PageCount
+            if (result != null && result.Data != null)
+            {
+                Products = result.Data.Products;
+                CurrentPage = result.Data.CurrentPage;
+                PageCount = result.Data.Pages;
+            }
+            // If no products were found, display a message
             if (Products.Count == 0) Message = "No products found.";
+            // Notify listeners that products have changed
             ProductsChanged?.Invoke();
 
         }
