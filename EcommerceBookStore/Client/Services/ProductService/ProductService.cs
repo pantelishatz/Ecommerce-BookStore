@@ -60,6 +60,7 @@ namespace EcommerceBookStore.Client.Services.ProductService
 
         public async Task SearchProducts(string searchText, int page)
         {
+            LastSearchText = searchText;
             // Retrieve products that match the provided search text
             var result = await _http.GetFromJsonAsync<ServiceResponse<ProductSearchResult>>($"api/product/search/{searchText}/{page}");
             // If the result is not null and contains data, update the Products list, CurrentPage, and PageCount
