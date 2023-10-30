@@ -5,10 +5,12 @@ namespace EcommerceBookStore.Client.Services.CartService
     public class CartService : ICartService
     {
         private readonly ILocalStorageService _localStorage;
-        public CartService(ILocalStorageService localStorage)
+        private readonly HttpClient _http;
+
+        public CartService(ILocalStorageService localStorage, HttpClient http)
         {
             _localStorage = localStorage;
-            
+            _http = http;
         }
         public event Action OnChange;
 
@@ -34,6 +36,14 @@ namespace EcommerceBookStore.Client.Services.CartService
             }
 
             return cart;
+        }
+
+        public async Task<List<CartProductResponse>> GetCartProducts()
+        {
+            var cartItems = await _localStorage.GetItemAsync<List<CartItem>>("cart");
+            var response = await _http.PostAsJsonAsync("api/cart/products", cartItems);
+            var cartProducts = await response.Content.ReadFromJsonAsync<ServiceResponse<List<CartProductResponse>>>();
+            return cartProducts.Data;
         }
     }
 }

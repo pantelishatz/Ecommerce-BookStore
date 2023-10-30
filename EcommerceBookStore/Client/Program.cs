@@ -2,11 +2,12 @@ global using EcommerceBookStore.Shared;
 global using System.Net.Http.Json;
 global using EcommerceBookStore.Client.Services.ProductService;
 global using EcommerceBookStore.Client.Services.CategoryService;
+global using EcommerceBookStore.Client.Services.CartService;
 using EcommerceBookStore.Client;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Blazored.LocalStorage;
-using EcommerceBookStore.Client.Services.CartService;
+
 
 namespace EcommerceBookStore.Client
 {
