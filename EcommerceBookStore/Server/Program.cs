@@ -4,6 +4,7 @@ global using EcommerceBookStore.Server.Data;
 global using EcommerceBookStore.Server.Services.ProductService;
 global using EcommerceBookStore.Server.Services.CategoryService;
 global using EcommerceBookStore.Server.Services.CartService;
+global using EcommerceBookStore.Server.Services.AuthService;
 using Microsoft.AspNetCore.ResponseCompression;
 
 
@@ -29,6 +30,7 @@ namespace EcommerceBookStore
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ICartService, CartService>();
+            builder.Services.AddScoped<IAuthService, AuthService>();
 
             var app = builder.Build();
 
