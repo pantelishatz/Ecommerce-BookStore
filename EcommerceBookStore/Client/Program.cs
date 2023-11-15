@@ -4,6 +4,7 @@ global using EcommerceBookStore.Client.Services.ProductService;
 global using EcommerceBookStore.Client.Services.CategoryService;
 global using EcommerceBookStore.Client.Services.CartService;
 global using EcommerceBookStore.Client.Services.AuthService;
+global using EcommerceBookStore.Client.Services.OrderService;
 global using Microsoft.AspNetCore.Components.Authorization;
 using EcommerceBookStore.Client;
 using Microsoft.AspNetCore.Components.Web;
@@ -27,6 +28,7 @@ namespace EcommerceBookStore.Client
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddOptions();
             builder.Services.AddAuthorizationCore();
             builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();

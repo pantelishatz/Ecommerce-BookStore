@@ -5,9 +5,11 @@ global using EcommerceBookStore.Server.Services.ProductService;
 global using EcommerceBookStore.Server.Services.CategoryService;
 global using EcommerceBookStore.Server.Services.CartService;
 global using EcommerceBookStore.Server.Services.AuthService;
+global using EcommerceBookStore.Server.Services.OrderService;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace EcommerceBookStore
 {
@@ -32,6 +34,7 @@ namespace EcommerceBookStore
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<ICartService, CartService>();
             builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
