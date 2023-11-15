@@ -47,6 +47,8 @@ namespace EcommerceBookStore
 
                 });
 
+            builder.Services.AddHttpContextAccessor();
+
             var app = builder.Build();
 
             app.UseSwaggerUI();
