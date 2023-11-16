@@ -10,6 +10,10 @@
 {
     <span>@message</span>
 }
+else if(orderPlaced)
+{
+    <span>Σας ευχαριστούμε πολύ. Η παραγγελία σας έχει καταχωρηθεί. Μπορείτε να δείτε την παραγγελία σας <a href="orders">εδώ</a>.</span>
+}
 else
 {
     <div>
@@ -43,9 +47,11 @@ else
 @code {
     List<CartProductResponse> cartProducts = null;
     string message = "Loading...";
+    bool orderPlaced = false;
 
     protected override async Task OnInitializedAsync()
     {
+        orderPlaced = false;
         await LoadCart();
     }
 
@@ -77,5 +83,7 @@ else
     private async Task PlaceOrder()
     {
         await OrderService.PlaceOrder();
+        await CartService.GetCartItemsCount();
+        orderPlaced = true;
     }
 }
