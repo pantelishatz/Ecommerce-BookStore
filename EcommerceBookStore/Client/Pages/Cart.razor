@@ -1,6 +1,7 @@
 ﻿@page "/cart"
 @inject ICartService CartService
 @inject IOrderService OrderService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Shopping Cart</PageTitle>
 
@@ -9,10 +10,6 @@
 @if (cartProducts == null || cartProducts.Count == 0)
 {
     <span>@message</span>
-}
-else if(orderPlaced)
-{
-    <span>Σας ευχαριστούμε πολύ. Η παραγγελία σας έχει καταχωρηθεί. Μπορείτε να δείτε την παραγγελία σας <a href="orders">εδώ</a>.</span>
 }
 else
 {
@@ -41,17 +38,15 @@ else
             Σύνολο (@cartProducts.Count): €@cartProducts.Sum(product => product.Price * product.Quantity)
         </div>
     </div>
-    <button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Παράγγειλε τώρα</button>
+    <button @onclick="PlaceOrder" class="btn alert-success float-end mt-1">Πληρωμή</button>
 }
 
 @code {
     List<CartProductResponse> cartProducts = null;
     string message = "Loading...";
-    bool orderPlaced = false;
 
     protected override async Task OnInitializedAsync()
     {
-        orderPlaced = false;
         await LoadCart();
     }
 
@@ -82,8 +77,7 @@ else
 
     private async Task PlaceOrder()
     {
-        await OrderService.PlaceOrder();
-        await CartService.GetCartItemsCount();
-        orderPlaced = true;
+        string url = await OrderService.PlaceOrder();
+        NavigationManager.NavigateTo(url);
     }
 }
