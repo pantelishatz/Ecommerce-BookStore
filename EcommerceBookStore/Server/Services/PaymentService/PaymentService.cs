@@ -10,7 +10,7 @@ namespace EcommerceBookStore.Server.Services.PaymentService
         private readonly IAuthService _authService;
         private readonly IOrderService _orderService;
 
-        const string secret = "";
+        const string secret = "whsec_58fbce2f3cfdd0dd962cf476bc6ba491c8462a17b135cc6add585564f4605e25";
 
         public PaymentService(ICartService cartService, IAuthService authService, IOrderService orderService)
         {
